@@ -3,7 +3,7 @@
 <%@page import="database.ConnectionProvider"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -82,8 +82,11 @@
 </style>
 </head>
 <body>
+
+	
+
 	<h1>Order</h1>
-	<form action="OrderFormSubmit.jsp">
+	<form action="ChooseItemsForm" method="post">
 	<table>
 	<tr>
 		<th></th>
@@ -100,11 +103,11 @@
 		while(resultSet.next()){
 			%>
 			<tr>
-				<td><input class="check" type="checkbox" name="itemList" value="<%=resultSet.getString(1) %>"/></td>
+				<td><input id="i<%=resultSet.getString(1)%>" type="checkbox" name="itemList" value="<%=resultSet.getString(1) %>"/></td>
 				<td><%=resultSet.getString(1) %></td>
 				<td><%=resultSet.getString(2) %></td>
 				<td><%=resultSet.getFloat(3) %></td>
-				<td><input type="text" name="quantity" placeholder="Enter Quantity"></td>
+				<td><input id="q<%=resultSet.getString(1) %>>"  type="text"  name="quantity" placeholder="Enter Quantity"></td>
 			</tr>
 			<%
 		}
@@ -115,8 +118,8 @@
 	</form>
 	
 	<!-- <script type="text/javascript">
-		function enableDisableQuantity(x,j) {
-			var y=document.getElementByClassName("textField"+j);
+		function fun1(x,y) {
+			
 			if(x.checked==true){
 				y.style.display="inline-block";
 			}
