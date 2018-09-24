@@ -149,6 +149,41 @@ insert into order_item_quantity('O100','I106',23);
 insert into order_item_quantity('O100','I108',54);
 
 commit;
-
 alter table orders
 add (customerId varchar2(30) references customers(customerId));
+
+//Format for managerType {'WM':'Warehouse Manager','FM':'Fatory Manager','HM':'Head Manager'}
+
+insert into managers values('M100','Ben','abc','HM');
+insert into managers values('M101','Robert','abc','WM');
+insert into managers values('M102','Jack','abc','FM');
+insert into managers values('M103','Michael','abc','WM');
+insert into managers values('M104','Ron','abc','FM');
+insert into managers values('M105','Harry','abc','WM');
+commit;
+
+insert into customers values('C100','c100@abc.com','abc','Noida','8988998786','Mike');
+insert into customers values('C101','c101@abc.com','abc','Delhi','8943998786','Hulk');
+insert into customers values('C102','c102@abc.com','abc','Kanpur','8238998786','Zoro');
+insert into customers values('C103','c103@abc.com','abc','Jaipur','8987998786','Roman');
+commit;
+
+insert into warehouse values('W100','M101');
+insert into warehouse_items values('I100','W100',100);
+insert into warehouse_items values('I104','W100',50);
+
+insert into warehouse values('W101','M101');
+insert into warehouse_items values('I101','W101',60);
+insert into warehouse_items values('I103','W101',150);
+
+commit;
+
+insert into factory values('F100','M102');
+insert into factory_items values('F100','I100',100);
+insert into factory_items values('F100','I104',50);
+
+insert into factory values('F101','M104');
+insert into factory_items values('F101','I101',60);
+insert into factory_items values('F101','I103',150);
+commit;
+
