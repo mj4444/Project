@@ -116,17 +116,17 @@ desc order_item_quantity;
 desc warehouse_location_coverage;
 
 
-insert into Items values('I100','bonnet',1000);
-insert into Items values('I101','bumper',800);
-insert into Items values('I102','grille',1500);
-insert into Items values('I103','rims',600);
-insert into Items values('I104','breake',450);
+insert into Items values('I100','Bonnet',1000);
+insert into Items values('I101','Bumper',800);
+insert into Items values('I102','Grille',1500);
+insert into Items values('I103','Rims',600);
+insert into Items values('I104','Break',450);
 commit;
-insert into Items values('I105','chain cover',567);
-insert into Items values('I106','bike engine',1600);
-insert into Items values('I107','wheel',900);
-insert into Items values('I108','head light',870);
-insert into Items values('I109','mudgaurd',560);
+insert into Items values('I105','Chain Cover',567);
+insert into Items values('I106','Bike Engine',1600);
+insert into Items values('I107','Wheel',900);
+insert into Items values('I108','Head Light',870);
+insert into Items values('I109','Mudgaurd',560);
 commit;
 select * from items;
 
@@ -187,3 +187,74 @@ insert into factory_items values('F101','I101',60);
 insert into factory_items values('F101','I103',150);
 commit;
 
+
+#Changes#
+========================
+
+drop sequence inbox_seq;
+create sequence inbox_seq
+start with 1
+minvalue 1
+maxvalue 9999999
+nocycle;
+
+drop sequence orderid_seq;
+Create sequence orderid_seq start with 1
+increment by 1
+minvalue 1
+maxvalue 999999
+nocycle;
+
+drop table inbox;
+create table inbox(
+messageId varchar2(30) PRIMARY key,
+massage varchar2(100),
+inbox_user_id varchar2(30),
+message_from varchar2(30));
+
+
+create table customers( 
+customerId varchar2(30) PRIMARY key,
+password varchar2(20) not null,
+name varchar2(40),
+emailId varchar2(30) UNIQUE,
+location varchar2(30),
+contactNumber varchar2(10)
+);
+
+drop table customers;
+
+create table dealers( 
+dealerId varchar2(30) PRIMARY key,
+password varchar2(20) not null,
+name varchar2(40),
+emailId varchar2(30) UNIQUE,
+location varchar2(30),
+contactNumber varchar2(10),
+rating number);
+//done
+drop table Dealeraddress;
+drop table  Customeraddress;
+create table Dealeraddress(userID varchar(20) references Dealers(dealerid) ,
+streetAddress varchar2(60),
+state varchar2(30),
+pincode varchar2(6));
+create table Customeraddress(userID varchar(20) references Customers(customerid) ,
+streetAddress varchar2(60),
+state varchar2(30),
+pincode varchar2(6));
+//done
+
+delete from order_item_quantity;
+delete from orders;
+alter table orders drop primary key cascade;
+alter table orders modify orderid number(7) primary key;
+alter table order_item_quantity modify orderid number(7) references orders(orderid);
+
+
+
+//-----------Message hardcode :
+
+You have and order from a of orderID : 1         
+
+//---------------------------
