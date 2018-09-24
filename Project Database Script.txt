@@ -140,3 +140,12 @@ insert into dealers values('D100','d123@abc.com','abc','Noida','8989898967','Max
 insert into dealers values('D101','d111@abc.com','abc','Noida','3459898967','Thor',5);
 commit;
 
+#Changes 24-09-2018
+insert into inbox values('M100','Hello World!','C101');
+insert into inbox values('M101','Hello Mike!','C101');
+
+insert into orders('O100',2470,'D100',1,'C100');
+insert into order_item_quantity('O100','I106',23);
+insert into order_item_quantity('O100','I108',54);
+
+commit;
