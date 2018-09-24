@@ -12,7 +12,7 @@
 <style>
 		table{
 			width: 70%;
-			height: 60%;
+			/*height: 60%;*/
 			background: transparent;
 			border-style: none;
 			box-shadow: 0px 0px 4px 4px black;
@@ -66,7 +66,7 @@
 <%
 
 	Connection connection=ConnectionProvider.getConnection();
-	String query="Select * from orders where customerId=? and status=1";
+	String query="Select * from orders where  customerId=? and status=1";
 	PreparedStatement preparedStatement=connection.prepareStatement(query);
 	preparedStatement.setString(1,"C100");
 	ResultSet resultSet=preparedStatement.executeQuery();
