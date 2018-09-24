@@ -149,3 +149,6 @@ insert into order_item_quantity('O100','I106',23);
 insert into order_item_quantity('O100','I108',54);
 
 commit;
+
+alter table orders
+add (customerId varchar2(30) references customers(customerId));
