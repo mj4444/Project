@@ -141,14 +141,7 @@ commit;
 
 #Changes 24-09-2018
 ==============================
-insert into inbox values('M100','Hello World!','C101');
-insert into inbox values('M101','Hello Mike!','C101');
 
-insert into orders('O100',2470,'D100',1,'C100');
-insert into order_item_quantity('O100','I106',23);
-insert into order_item_quantity('O100','I108',54);
-
-commit;
 alter table orders
 add (customerId varchar2(30) references customers(customerId));
 
@@ -258,3 +251,8 @@ alter table order_item_quantity modify orderid number(7) references orders(order
 You have and order from a of orderID : 1         
 
 //---------------------------
+
+
+#Insert=======================
+insert into inbox values(inbox_seq.NEXTVAL,'Hello World!','C101','D100');
+insert into inbox values(inbox_seq.NEXTVAL,'Hello Mike!','C101','D101');
