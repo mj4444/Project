@@ -3,17 +3,16 @@
 	DATABASE SCHEMA
 ===============================
 
-
-
-
 drop table customers;
 drop table dealers;
 drop table orders;
 drop table order_item_quantity;
 drop table warehouse;
+drop table warehouse_items;
 drop table managers;
 drop table items;
 drop table factory;
+drop table factory_items;
 drop table inbox;
 drop table orders;
 drop table warehouse_location_coverage;
