@@ -132,7 +132,7 @@ commit;
 select * from items;
 
 #Changes 21-09-18
-
+========================
 alter table orders
 add (status number check (status in(0,1)));
 
@@ -141,6 +141,7 @@ insert into dealers values('D101','d111@abc.com','abc','Noida','3459898967','Tho
 commit;
 
 #Changes 24-09-2018
+==============================
 insert into inbox values('M100','Hello World!','C101');
 insert into inbox values('M101','Hello Mike!','C101');
 
