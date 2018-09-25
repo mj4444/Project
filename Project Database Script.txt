@@ -256,3 +256,45 @@ You have and order from a of orderID : 1
 #Insert=======================
 insert into inbox values(inbox_seq.NEXTVAL,'Hello World!','C101','D100');
 insert into inbox values(inbox_seq.NEXTVAL,'Hello Mike!','C101','D101');
+
+
+#Changes 25-09-2018
+================================
+desc orders;
+
+select * from orders;
+
+update orders set status=1 where orderid in (1,4);
+commit;
+
+select * from order_item_quantity;
+
+desc order_item_quantity;
+
+update orders set customerId='C100';
+commit;
+
+select * from dealers;
+
+delete from dealers;
+commit;
+
+desc dealers;
+
+desc customers;
+
+select * from customers;
+
+delete from customers;
+commit;
+
+insert into customers values('C100','abc','Mike','c100@abc.com','Noida','8988998786');
+insert into customers values('C101','abc1','Hulk','c101@abc.com','Delhi','8943998786');
+insert into customers values('C102','abc2','Zoro','c102@abc.com','Kanpur','8238998786');
+insert into customers values('C103','abc3','Roman','c103@abc.com','Jaipur','8987998786');
+commit;
+
+insert into dealers values('D100','abc','Luther','luther@gmail.com','Noida','7687980954',3);
+insert into dealers values('D101','xyz','Junior','junior@gmail.com','Noida','9887980954',3);
+commit;
+
