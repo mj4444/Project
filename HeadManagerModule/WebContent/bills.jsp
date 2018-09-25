@@ -15,10 +15,14 @@
 			/*height: 60%;*/
 			background: transparent;
 			border-style: none;
-			box-shadow: 0px 0px 4px 4px black;
+			box-shadow: 0px 0px 4px 1px black;
 			margin: 0px auto;
 			border-radius: 12px 12px 12px 12px;
 			font-size: 20px;
+			transition: all 1s;
+		}
+		table:hover{
+			box-shadow: 0px 0px 4px 4px #00B0FF;
 		}
 		tr{
 			border-style: none;
@@ -46,41 +50,80 @@
 			box-shadow: 0px 0px 4px 2px #00B0FF;
 		}
 		h1{
-			margin-bottom: 20px;
+			padding-bottom: 0px;
 			text-align: center;
 			color: red;
+			text-shadow: 0px 2px 4px black;
+			margin-bottom: 0px;
+		}
+		hr{
+			height: 4px;
+			width: 80%;
+			border-style: none;
+			background: linear-gradient(to right,#37474f,white,#37474f);
+			margin-bottom: 40px;
+			margin-top: 0px;
 		}
 		th{
 			color: #03A9FA;
 		}
+		
+		h2{
+			margin: 0px auto;
+			text-align: center;
+			color: red;
+			box-shadow: 0px 0px 4px 1px black;
+			background: transparent;
+			width: 80%;
+			border-radius: 12px 12px 12px 12px;
+			transition: all 1s;
+			text-shadow: 0px 2px 4px black;
+		}
+		
+		h2:hover{
+			box-shadow: 0px 0px 4px 4px #00B0FF;
+		}
+		
 </style>
 </head>
 <body>
 <h1>Bills</h1>
-<table>
-	<tr>
-		<th>Order ID</th>
-		<th>Cost</th>
-		<th>Dealer ID</th>
-	</tr>
+<hr/>
 <%
-
 	Connection connection=ConnectionProvider.getConnection();
-	String query="Select * from orders where  customerId=? and status=1";
-	PreparedStatement preparedStatement=connection.prepareStatement(query);
+	String query="Select * from orders where customerId=? and status=1";
+	PreparedStatement preparedStatement=connection.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	preparedStatement.setString(1,"C100");
 	ResultSet resultSet=preparedStatement.executeQuery();
-	while(resultSet.next()){
+	if(resultSet.next()){
+		resultSet.previous();
 		%>
-		<tr>
-			<td><%=resultSet.getString(1) %></td>
-			<td><%=resultSet.getString(2) %></td>
-			<td><%=resultSet.getString(3) %></td>
-		</tr>
+		<table>
+			<tr>
+				<th>Order ID</th>
+				<th>Cost</th>
+				<th>Dealer ID</th>
+			</tr>
+			<%
+			while(resultSet.next()){
+				%>
+				<tr>
+					<td><%=resultSet.getString(1) %></td>
+					<td><%=resultSet.getString(2) %></td>
+					<td><%=resultSet.getString(3) %></td>
+				</tr>
+				<%}
+			%>
+		</table>
+		<%
+	}
+	else{
+		%>
+			<h2>No Bills</h2>
 		<%
 	}
 
 %>
-</table>
+
 </body>
 </html>

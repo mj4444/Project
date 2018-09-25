@@ -45,11 +45,20 @@
 		}
 		
 		h1{
-			margin-bottom: 20px;
+			padding-bottom: 0px;
 			text-align: center;
 			color: red;
+			text-shadow: 0px 2px 4px black;
+			margin-bottom: 0px;
 		}
-		
+		hr{
+			height: 4px;
+			width: 80%;
+			border-style: none;
+			background: linear-gradient(to right,#37474f,white,#37474f);
+			margin-bottom: 40px;
+			margin-top: 0px;
+		}
 		.accordion {
 		    background-color: #eee;
 		    color: #444;
@@ -84,7 +93,7 @@
 </head>
 <body>
 <h1>Messages</h1>
-
+<hr/>
 <%
 	Connection connection=ConnectionProvider.getConnection();
 	String query="SELECT * FROM INBOX WHERE inbox_user_id=?";

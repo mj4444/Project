@@ -13,13 +13,16 @@
 		
 		table{
 			width: 70%;
-			height: 60%;
 			background: transparent;
 			border-style: none;
-			box-shadow: 0px 0px 4px 4px black;
+			box-shadow: 0px 0px 4px 1px black;
 			margin: 0px auto;
 			border-radius: 12px 12px 12px 12px;
 			font-size: 20px;
+			transition: all 1s;
+		}
+		table:hover{
+			box-shadow: 0px 0px 4px 4px #00B0FF;
 		}
 		tr{
 			border-style: none;
@@ -48,12 +51,23 @@
 			box-shadow: 0px 0px 4px 2px #00B0FF;
 		}
 		h1{
-			margin-bottom: 20px;
+			padding-bottom: 0px;
 			text-align: center;
 			color: red;
+			text-shadow: 0px 2px 4px black;
+			margin-bottom: 0px;
+		}
+		hr{
+			height: 4px;
+			width: 80%;
+			border-style: none;
+			background: linear-gradient(to right,#37474f,white,#37474f);
+			margin-bottom: 40px;
+			margin-top: 0px;
 		}
 		th{
 			color: #03A9FA;
+			padding: 10px 0px 10px 0px;
 		}
 		
 		input{
@@ -83,9 +97,8 @@
 </head>
 <body>
 
-	
-
 	<h1>Order</h1>
+	<hr/>
 	<form action="ChooseItemsForm" method="post">
 	<table>
 	<tr>

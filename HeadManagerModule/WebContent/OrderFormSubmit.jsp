@@ -114,10 +114,10 @@
 			<tr>
 				<td><input type="radio" name="selectDealer" value="<%=resultSet.getString(1) %>"/></td>
 				<td><%=resultSet.getString(1) %></td>
+				<td><%=resultSet.getString(3) %></td>
+				<td><%=resultSet.getString(4) %></td>
 				<td><%=resultSet.getString(6) %></td>
-				<td><%=resultSet.getString(2) %></td>
-				<td><%=resultSet.getString(5) %></td>
-				<td><%=resultSet.getString(7) %></td>
+				<td><%=resultSet.getInt(7) %></td>
 			</tr>
 			<%
 		}

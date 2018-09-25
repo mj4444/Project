@@ -22,21 +22,8 @@ public class OrderCompletion extends HttpServlet {
 		HttpSession httpSession = request.getSession(false);
 		if (httpSession == null) {
 		} else {
-			int[] quantity = (int[]) httpSession.getAttribute("quantity");
+			int[] quantity =  (int[]) httpSession.getAttribute("quantity");
 			String[] itemList = (String[]) httpSession.getAttribute("items");
-
-			/*PrintWriter printWriter = response.getWriter();
-			response.setContentType("text/html");
-			for (String string : itemList) {
-				printWriter.print(string + ",");
-			}
-
-			printWriter.println(dealerId);
-			printWriter.println("<br>");
-
-			for (Integer i : quantity) {
-				printWriter.println(i + ",");
-			}*/
 			
 			Connection connection=ConnectionProvider.getConnection();
 			String query1="Select price from items where itemid=?";
@@ -58,25 +45,25 @@ public class OrderCompletion extends HttpServlet {
 			
 			
 			
-			String query="Insert into orders values(orderid_seq.nextval,?,?,?)";
+			String query="Insert into orders values(orderid_seq.NEXTVAL,?,?,?)";
 			
 			try {
 				PreparedStatement preparedStatement=connection.prepareStatement(query);
-				preparedStatement.setInt(2, cost);
-				preparedStatement.setString(3, dealerId);
-				preparedStatement.setInt(4, 0);
+				preparedStatement.setInt(1, cost);
+				preparedStatement.setString(2, dealerId);
+				preparedStatement.setInt(3, 0);
 				int result=preparedStatement.executeUpdate();
 				if(result>0)
 					System.out.println("Inserted");
 				else
 					System.out.println("Not Inserted");
 				
-				String query2="Insert into order_item_quantity values(orderid_seq.currval,?,?)";
+				String query2="Insert into order_item_quantity values(orderid_seq.CURRVAL,?,?)";
 				
 				for(int i=0;i<itemList.length;i++){
 					preparedStatement=connection.prepareStatement(query2);
-					preparedStatement.setString(2, itemList[i]);
-					preparedStatement.setInt(3, quantity[i]);
+					preparedStatement.setString(1, itemList[i]);
+					preparedStatement.setInt(2, quantity[i]);
 					result=preparedStatement.executeUpdate();
 					if(result>0)
 						System.out.println("Inserted");
@@ -89,7 +76,7 @@ public class OrderCompletion extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		response.sendRedirect("CustomerHomePage.jsp?var=orderSubmitMessage");
+		response.sendRedirect("CustomerHomePage.jsp?var=OrderCompleteMessage");
 	}
 
 }

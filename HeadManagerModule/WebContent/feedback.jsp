@@ -15,10 +15,14 @@
 			height: 60%;
 			background: transparent;
 			border-style: none;
-			box-shadow: 0px 0px 4px 4px black;
+			box-shadow: 0px 0px 4px 1px black;
 			margin: 0px auto;
 			border-radius: 12px 12px 12px 12px;
 			font-size: 20px;
+			transition: all 1s;
+		}
+		table:hover{
+			box-shadow: 0px 0px 4px 4px #00B0FF;
 		}
 		tr{
 			border-style: none;
@@ -48,12 +52,15 @@
 			box-shadow: 0px 0px 4px 2px #00B0FF;
 		}
 		h1{
-			margin-bottom: 20px;
+			padding-bottom: 0px;
 			text-align: center;
 			color: red;
+			text-shadow: 0px 2px 4px black;
+			margin-bottom: 0px;
 		}
 		th{
 			color: #03A9FA;
+			padding: 10px 10px 10px 10px;
 		}
 		
 		input{
@@ -80,16 +87,25 @@
 		#submit:hover{
 			box-shadow: 0px 0px 4px 4px #00B0FF;
 		}
-		h1{
-			margin-bottom: 20px;
-			text-align: center;
-			color: red;
+		
+		hr{
+			height: 4px;
+			width: 80%;
+			border-style: none;
+			background: linear-gradient(to right,#37474f,white,#37474f);
+			margin-bottom: 40px;
+			margin-top: 0px;
 		}
+		
 	</style>
 </head>
 <body>
 
-<form action="RateDealer" method="post">
+<h1>Rate Dealer</h1>
+
+<hr/>
+
+<form name="rateDealer" action="RateDealer" method="post" onsubmit="return validateForm()">
 	<table>
 	<tr>
 		<th>Select</th>
@@ -103,7 +119,7 @@
 
 <%
 	Connection connection=ConnectionProvider.getConnection();
-	String query="Select dealerid from orders where customerid=?";
+	String query="Select distinct dealerid from orders where customerid=?";
 	PreparedStatement preparedStatement=connection.prepareStatement(query);
 	preparedStatement.setString(1, "C100");
 	ResultSet resultSet=preparedStatement.executeQuery();
@@ -132,5 +148,16 @@
 	<br/>
 	<input id="submit" type="submit" name="Submit" value="RATE DEALER"/>
 	</form>
+	
+	<script type="text/javascript">
+		function validateForm() {
+			var x = document.forms["rateDealer"]["rate"].value;
+			if(x>5 && x<=0)
+				alert("Enter between 1-5")
+				
+			var y=document.forms["rateDealer"]["rate"].value;
+		}
+	</script>
+	
 </body>
 </html>

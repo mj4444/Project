@@ -36,7 +36,7 @@
 	.menu:hover
 	{
 		filter: opacity(100%);
-		box-shadow: 0px 1px 4px 4px black;
+		box-shadow: 0px 1px 4px 4px #2196f3;
 	}
 	
 	#left
@@ -45,7 +45,6 @@
 		float: left;
 		width: 30%;
 		height: 100%;
-		//box-shadow: 0px 0px 4px 4px black;
 	}
 	
 	#right
@@ -54,8 +53,7 @@
 		float: right;
 		width: 65%;
 		height: 100%;
-		//background-color: #00796b;
-		box-shadow: 0px 0px 4px 4px black;
+		box-shadow: 0px 0px 4px 1px black;
 		margin-right: 20px;
 	}
 	
@@ -69,7 +67,7 @@
 		left: 0px;
 		text-align: center;
 		font-size: 40px;
-		box-shadow: 0px 0px 4px 4px black;
+		box-shadow: 0px 0px 4px 1px black;
 		z-index:1000;
 	}
 	
@@ -91,7 +89,11 @@
 		height: 50%;
 		transition: all 2s;
 		filter: opacity(0.8);
-		box-shadow: 0px 0px 4px 4px black;
+		box-shadow: 0px 0px 4px 1px black;
+		transition: all 1s;
+	}
+	#photo:hover{
+		box-shadow: 0px 0px 4px 4px #2196f3;
 	}
 	
 	#main_container

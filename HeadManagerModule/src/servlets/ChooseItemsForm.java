@@ -27,6 +27,6 @@ public class ChooseItemsForm extends HttpServlet {
 		httpSession.setAttribute("items", itemID);
 		httpSession.setAttribute("quantity", quantity);
 		
-		response.sendRedirect("CustomerHomePage.jsp?var=orderSubmit");
+		response.sendRedirect("CustomerHomePage.jsp?var=orderFormSubmit");
 	}
 }

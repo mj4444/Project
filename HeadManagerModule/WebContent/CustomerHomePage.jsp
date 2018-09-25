@@ -39,13 +39,13 @@
 		box-shadow: 0px 1px 4px 1px black;
 		transition: all 1s;
 		filter: opacity(70%);
-		/* border-radius: 12px 12px 12px 12px; */
+		border-radius: 12px 12px 12px 12px;
 	}
 	
 	.menu:hover
 	{
 		filter: opacity(100%);
-		box-shadow: 0px 0px 4px 2px black;
+		box-shadow: 0px 0px 4px 4px #0d47a1;
 	}
 	
 	#left
@@ -161,12 +161,12 @@
 				<%@include file="feedback.jsp" %>
 				<%
 			}
-			else if(a.equals("orderSubmit")){
+			else if(a.equals("orderFormSubmit")){
 				%>
 				<%@include file="OrderFormSubmit.jsp" %>
 				<%
 			}
-			else if(a.equals("orderSubmitMessage")){
+			else if(a.equals("OrderCompleteMessage")){
 				%>
 				<%@include file="OrderCompleteMessage.jsp" %>
 				<%
