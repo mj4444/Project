@@ -57,6 +57,13 @@
 			text-shadow: 0px 2px 4px black;
 			margin-bottom: 0px;
 		}
+		h2{
+			padding-bottom: 0px;
+			text-align: center;
+			color: red;
+			text-shadow: 0px 2px 4px black;
+			margin-bottom: 0px;
+		}
 		hr{
 			height: 4px;
 			width: 80%;
@@ -83,7 +90,7 @@
 			border-radius: 12px 12px 12px 12px;
 		}
 		
-		.innerTable{
+		#innerTable0,#innerTable1,#innerTable2,#innerTable3{
 			margin-top: 20px;
 			box-shadow: 0px 0px 4px 1px #00B0FF;
 		}
@@ -96,16 +103,7 @@
 			border-style: none;
 			transition: all 1s;
 		}
-		#showItemsButton0:hover{
-			box-shadow: 0px 0px 4px 2px;
-		}
-		#showItemsButton1:hover{
-			box-shadow: 0px 0px 4px 2px;
-		}
-		#showItemsButton2:hover{
-			box-shadow: 0px 0px 4px 2px;
-		}
-		#showItemsButton3:hover{
+		#showItemsButton0:hover,#showItemsButton1:hover,#showItemsButton1:hover#showItemsButton1:hover{
 			box-shadow: 0px 0px 4px 2px;
 		}
 		
@@ -121,17 +119,10 @@
 			margin-right: 10px;
 			box-shadow: 0px 0px 4px 2px #1de9b6;
 		}
-		#closeButton0:hover{
+		#closeButton0:hover,#closeButton1:hover,#closeButton2:hover#closeButton3:hover{
 			box-shadow: 0px 0px 4px 2px red;
-		}
-		#closeButton1:hover{
-			box-shadow: 0px 0px 4px 2px red;
-		}
-		#closeButton2:hover{
-			box-shadow: 0px 0px 4px 2px red;
-		}
-		#closeButton3:hover{
-			box-shadow: 0px 0px 4px 2px red;
+			color: black;
+			background-color: red;
 		}
 		
 	</style>
@@ -140,7 +131,7 @@
 
 <%
 
-String[] warehouseId=new String[4];
+	String[] warehouseId=new String[4];
 
 %>
 
@@ -154,6 +145,7 @@ String[] warehouseId=new String[4];
 		</tr>
 	<%
 		int i=0;
+		int j=0;
 		Connection connection=ConnectionProvider.getConnection();
 		String query="select * from warehouse";
 		Statement statement=connection.createStatement();
@@ -165,8 +157,8 @@ String[] warehouseId=new String[4];
 			<tr>
 				<td><%=resultSet.getString(1) %></td>
 				<td><%=resultSet.getString(2) %></td>
-				<td><button id="showItemsButton<%=i %>" onclick="fun1()">Show Items</button>
-					
+				<td>
+					<button id="showItemsButton<%=j++ %>" onclick="fun1(this)">Show Items</button>	
 				</td>
 			</tr>
 			<%
@@ -174,19 +166,20 @@ String[] warehouseId=new String[4];
 	%>
 	</table>
 	
-	
-		<div id="innerTableDiv0">
-				<button id="closeButton0" onclick="fun2()">X</button>
-				<table class="innerTable">
-					<tr>
-						<th>Item ID</th>
-						<th>Quantity</th>
-					</tr>
+			<div id="innerTableDiv0">
+			<button id="closeButton0" onclick="fun2(this)">X</button>
+				<h2>Item List</h2>
+				<hr/>
+					<table id="innerTable0">
+						<tr>
+							<th>Item ID</th>
+							<th>Quantity</th>
+						</tr>
 						<%
 							
 							String query1="Select * from WAREHOUSE_ITEMS where warehouseId=?";
 							PreparedStatement preparedStatement=connection.prepareStatement(query1);
-							preparedStatement.setString(1,warehouseId[0]);
+							preparedStatement.setString(1, warehouseId[0]);
 							ResultSet resultSet2=preparedStatement.executeQuery();
 							while(resultSet2.next()){
 								%>
@@ -197,16 +190,18 @@ String[] warehouseId=new String[4];
 								<%
 							}
 						%>
-				</table>
-		</div>
-		
-		<div id="innerTableDiv1">
-				<button id="closeButton1" onclick="fun2()">X</button>
-				<table class="innerTable">
-					<tr>
-						<th>Item ID</th>
-						<th>Quantity</th>
-					</tr>
+					</table>
+				</div>
+				
+			<div id="innerTableDiv1">
+				<button id="closeButton1" onclick="fun2(this)">X</button>
+				<h2>Item List</h2>
+				<hr/>
+					<table id="innerTable1">
+						<tr>
+							<th>Item ID</th>
+							<th>Quantity</th>
+						</tr>
 						<%
 							
 							query1="Select * from WAREHOUSE_ITEMS where warehouseId=?";
@@ -222,16 +217,18 @@ String[] warehouseId=new String[4];
 								<%
 							}
 						%>
-				</table>
-		</div>
-		
-		<div id="innerTableDiv2">
-				<button id="closeButton2" onclick="fun2()">X</button>
-				<table class="innerTable">
-					<tr>
-						<th>Item ID</th>
-						<th>Quantity</th>
-					</tr>
+					</table>
+				</div>
+				
+			<div id="innerTableDiv2">
+				<button id="closeButton2" onclick="fun2(this)">X</button>
+				<h2>Item List</h2>
+				<hr/>
+					<table id="innerTable2">
+						<tr>
+							<th>Item ID</th>
+							<th>Quantity</th>
+						</tr>
 						<%
 							
 							query1="Select * from WAREHOUSE_ITEMS where warehouseId=?";
@@ -247,16 +244,18 @@ String[] warehouseId=new String[4];
 								<%
 							}
 						%>
-				</table>
-		</div>
-		
-		<div id="innerTableDiv3">
-				<button id="closeButton3" onclick="fun2()">X</button>
-				<table class="innerTable">
-					<tr>
-						<th>Item ID</th>
-						<th>Quantity</th>
-					</tr>
+					</table>
+				</div>
+				
+			<div id="innerTableDiv3">
+				<button id="closeButton3" onclick="fun2(this)">X</button>
+					<h2>Item List</h2>
+					<hr/>
+					<table id="innerTable3">
+						<tr>
+							<th>Item ID</th>
+							<th>Quantity</th>
+						</tr>
 						<%
 							
 							query1="Select * from WAREHOUSE_ITEMS where warehouseId=?";
@@ -272,58 +271,57 @@ String[] warehouseId=new String[4];
 								<%
 							}
 						%>
-				</table>
-		</div>
+					</table>
+				</div>
 	
 	<script type="text/javascript">
 	
-		function fun1() {
-			var y0=document.getElementById("showItemsButton0");
-			var y1=document.getElementById("showItemsButton1");
-			/* var y2=document.getElementById("showItemsButton2");
-			var y3=document.getElementById("showItemsButton3"); */
-			if(y0.clicked==true){
-				var x0=document.getElementById("innerTableDiv0");
-				x0.style.display="block";
+		function fun1(y) {
+			if(y.id=='showItemsButton0'){
+				y.onclick= function(){
+					document.getElementById('innerTableDiv0').style.display='block';
+				}
 			}
-			else if(y1.clicked==true){
-				var x1=document.getElementById("innerTableDiv1");
-				x1.style.display="block";
+			else if(y.id=='showItemsButton1'){
+				y.onclick= function(){
+					document.getElementById('innerTableDiv1').style.display='block';
+				}
 			}
-			/* else if(y2.clicked==true){
-				var x2=document.getElementById("innerTableDiv2");
-				x2.style.display="block";
+			else if(y.id=='showItemsButton2'){
+				y.onclick= function(){
+					document.getElementById('innerTableDiv2').style.display='block';
+				}
 			}
-			else if(y3.clicked==true){
-				var x3=document.getElementById("innerTableDiv3");
-				x3.style.display="block";
-			} */
+			else if(y.id=='showItemsButton3'){
+				y.onclick= function(){
+					document.getElementById('innerTableDiv3').style.display='block';
+				}
+			}
+		}
+		//==========================
+		function fun2(y) {
+			if(y.id=='closeButton0'){
+				y.onclick= function(){
+					document.getElementById('innerTableDiv0').style.display='none';
+				}
+			}
+			else if(y.id=='closeButton1'){
+				y.onclick= function(){
+					document.getElementById('innerTableDiv1').style.display='none';
+				}
+			}
+			else if(y.id=='closeButton2'){
+				y.onclick= function(){
+					document.getElementById('innerTableDiv2').style.display='none';
+				}
+			}
+			else if(y.id=='closeButton3'){
+				y.onclick= function(){
+					document.getElementById('innerTableDiv3').style.display='none';
+				}
+			}
 		}
 		
-		function fun2() {
-			var y0=document.getElementById("closeButton0");
-			var y1=document.getElementById("closeButton1");
-			/* var y2=document.getElementById("closeButton2");
-			var y3=document.getElementById("closeButton3"); */
-			if(y0.clicked==true){
-				var x0=document.getElementById("innerTableDiv0");
-				x0.style.display="none";
-			}
-			else if(y1.clicked==true){
-				var x1=document.getElementById("innerTableDiv1");
-				x1.style.display="none";
-			}
-			/* else if(y2.clicked==true){
-				var x2=document.getElementById("innerTableDiv2");
-				x2.style.display="none";
-			}
-			else if(y3.clicked==true){
-				var x3=document.getElementById("innerTableDiv3");
-				x3.style.display="none"; 
-			}*/
-		}
-		
-	
 	</script>
 </body>
 </html>
